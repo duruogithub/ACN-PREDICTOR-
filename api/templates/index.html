@@ -16,11 +16,13 @@
         <form action="/predict" method="POST">
             <label for="gender">Gender:</label>
             <select id="gender" name="gender" required>
+                <option value="" disabled selected>--请选择--</option>
                 <option value="0">Female</option>
                 <option value="1">Male</option>
             </select>
             <label for="age">Age:</label>
             <select id="age" name="age" required>
+                <option value="" disabled selected>--请选择--</option>
                 <option value="0">40–49</option>
                 <option value="1">50–59</option>
                 <option value="2">60–69</option>
@@ -28,107 +30,55 @@
             </select>
             <label for="bmi">BMI:</label>
             <select id="bmi" name="bmi" required>
+                <option value="" disabled selected>--请选择--</option>
                 <option value="0">Less than 24</option>
                 <option value="1">24 or greater</option>
             </select>
             <label for="residence">Residence:</label>
             <select id="residence" name="residence" required>
+                <option value="" disabled selected>--请选择--</option>
                 <option value="0">Central urban</option>
                 <option value="1">Agriculture-related areas</option>
             </select>
             <label for="fx">History of chronic diarrhea:</label>
             <select id="fx" name="fx" required>
+                <option value="" disabled selected>--请选择--</option>
                 <option value="0">No</option>
                 <option value="1">Yes</option>
             </select>
             <label for="bm">History of chronic constipation:</label>
             <select id="bm" name="bm" required>
+                <option value="" disabled selected>--请选择--</option>
                 <option value="0">No</option>
                 <option value="1">Yes</option>
             </select>
             <label for="lwy">History of chronic appendicitis or appendectomy:</label>
             <select id="lwy" name="lwy" required>
+                <option value="" disabled selected>--请选择--</option>
                 <option value="0">No</option>
                 <option value="1">Yes</option>
             </select>
             <label for="smoke">Smoking status:</label>
             <select id="smoke" name="smoke" required>
+                <option value="" disabled selected>--请选择--</option>
                 <option value="0">Never smokers</option>
                 <option value="1">Current or former smokers</option>
             </select>
             <label for="drink">Alcohol consumption:</label>
             <select id="drink" name="drink" required>
+                <option value="" disabled selected>--请选择--</option>
                 <option value="0">Never drinkers</option>
                 <option value="1">Drinkers</option>
             </select>
             <label for="fit">FIT Test Result:</label>
             <select id="fit" name="fit" required>
+                <option value="" disabled selected>--请选择--</option>
                 <option value="0">Negative</option>
                 <option value="1">Positive</option>
             </select>
             <button type="submit">Submit</button>
         </form>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const form = document.querySelector("form");
-            const inputs = document.querySelectorAll("select");
-            form.addEventListener("submit", function (e) {
-                let valid = true;
-                inputs.forEach(input => {
-                    if (!input.value) {
-                        input.style.border = "1px solid red";
-                        valid = false;
-                    } else {
-                        input.style.border = "1px solid #ddd";
-                    }
-                });
-                if (!valid) {
-                    e.preventDefault();
-                    alert("Please fill in all required fields.");
-                }
-            });
-        });
-        const translations = {
-            en: {
-                gender: "Gender",
-                age: "Age",
-                bmi: "BMI",
-                residence: "Residence",
-                fx: "History of chronic diarrhea",
-                bm: "History of chronic constipation",
-                lwy: "History of chronic appendicitis or appendectomy",
-                smoke: "Smoking status",
-                drink: "Alcohol consumption",
-                fit: "FIT Test Result",
-                submit: "Submit",
-            },
-            cn: {
-                gender: "性别",
-                age: "年龄",
-                bmi: "体重指数 (BMI)",
-                residence: "居住地",
-                fx: "慢性腹泻史",
-                bm: "慢性便秘史",
-                lwy: "慢性阑尾炎或阑尾切除史",
-                smoke: "吸烟状态",
-                drink: "饮酒情况",
-                fit: "粪便隐血试验结果",
-                submit: "提交",
-            },
-        };
-        document.querySelectorAll("#lang-en, #lang-cn").forEach(button => {
-            button.addEventListener("click", function () {
-                const lang = this.id === "lang-en" ? "en" : "cn";
-                document.querySelectorAll("label").forEach(label => {
-                    const forAttr = label.getAttribute("for");
-                    if (translations[lang][forAttr]) {
-                        label.innerText = translations[lang][forAttr] + ":";
-                    }
-                });
-                document.querySelector("button[type='submit']").innerText = translations[lang].submit;
-            });
-        });
-    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

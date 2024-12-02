@@ -1,17 +1,38 @@
 # 忽略 Python 虚拟环境
 venv/
+.env/
+env/
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
 # 忽略模型文件（可选）
 *.pkl
 
 # 忽略环境变量文件
 .env
+.env.*
 
 # 忽略 IDE 配置文件
-*.idea/
-*.vscode/
+.idea/
+.vscode/
+.idea_modules/
+*.iml
+*.sublime-workspace
+*.sublime-project
+.project
+.classpath
+.settings/
 
 # 忽略日志文件
 *.log
+logs/
+*.out
+*.err
+
+# 忽略系统生成的临时文件
+.DS_Store
+.AppleDouble
+Thumbs.db
+Desktop.ini
